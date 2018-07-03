@@ -2,6 +2,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var request = require("request");
+var path = require("path");
 
 // Our scraping tools
 var cheerio = require("cheerio");
@@ -21,14 +22,21 @@ var app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 // Use express.static to serve the public folder as a static directory
 app.use(express.static("public"));
+app.use(express.static(__dirname + '/node_modules/bootstrap/dist'));
 
 // Connect to the Mongo DB
 mongoose.connect("mongodb://localhost/webscraperdb");
 
-// routes
+/* ROUTES */
 
-// Scrape data from one site and place it into the mongodb db
-app.get("/scrape", function(req, res) {
+// send the home page
+app.get("/", (req,res) => {
+    res.sendFile(path.join(__dirname, "./public/index.html"));
+});
+
+// Scrape data from one site and place it into the mongodb 
+// this will also populate data on the home page
+app.get("/scrape", (req, res) => {
     // Make a request for the news section of `ycombinator`
     request("https://www.infowars.com/category/us-news/", function(error, response, html) {
       // Load the html body from request into cheerio
@@ -54,9 +62,21 @@ app.get("/scrape", function(req, res) {
     });
   
     // Send a "Scrape Complete" message to the browser
-    res.send("Scrape Complete");
-  });
-  
+    console.log("Scrape Complete");
+});
+
+app.get("/stories", (req, res) => {
+    db.Article.find({})
+    .then(dbArticle => {
+        res.json(dbArticle);
+    })
+    .catch(err => {
+        res.json(err);
+    });
+});
+
+
+
 // Start the server
 app.listen(PORT, function() {
     console.log("App running on port " + PORT + "!");
