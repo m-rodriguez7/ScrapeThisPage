@@ -1,14 +1,12 @@
-var express = require("express");
-var bodyParser = require("body-parser");
-var mongoose = require("mongoose");
-
-var path = require("path");
-
-
-var PORT = 3000;
+const express = require("express");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const path = require("path");
+const PORT = 3000;
+let MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/webscraperdb"
 
 // Initialize Express
-var app = express();
+const app = express();
 
 // Configure middleware
 
@@ -26,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/node_modules/bootstrap/dist'));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/webscraperdb");
+mongoose.connect(MONGODB_URI);
 
 /* ROUTES */
 require("./routes/routes")(app);

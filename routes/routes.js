@@ -1,10 +1,10 @@
-var path = require('path');
-var request = require("request");
+const path = require('path');
+const request = require("request");
 // Our scraping tools
-var cheerio = require("cheerio");
+const cheerio = require("cheerio");
 
 // Require all models
-var db = require("./../models/index");
+const db = require("./../models/index");
 
 module.exports = (app) => {
     
@@ -17,11 +17,11 @@ module.exports = (app) => {
         // Make a request for the news section of `ycombinator`
         request("https://www.infowars.com/category/us-news/", function(error, response, html) {
           // Load the html body from request into cheerio
-          var $ = cheerio.load(html);
+          const $ = cheerio.load(html);
           // For each element with a "title" class
           $(".article-content").each(function(i, element) {
             // Save the text and href of each link enclosed in the current element
-            var result = {};
+            const result = {};
             
             result.title = $(this).children("h3").children("a").text();
             result.link = $(this).children("h3").children("a").attr("href");
