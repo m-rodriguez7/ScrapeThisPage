@@ -2,8 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const path = require("path");
-const PORT = 3000;
-let MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/webscraperdb"
+const PORT = process.env.PORT || 8080;
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/webscraperdb"
 
 // Initialize Express
 const app = express();
