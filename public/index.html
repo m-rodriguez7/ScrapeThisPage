@@ -14,46 +14,56 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style>
+        #stories, #allnotes {
+            display: inline-block;
+            overflow: auto;
+            height: 700px;
+        }
+        .jumbotron {
+            color: white;
+            background-image: 
+                linear-gradient(
+                    rgba(0,0,0,0.5),
+                    rgba(0,0,0,0.5)
+                ),
+                url("./infowars.jpg");
+            
+        }
+        .notebody {
+            border: 1px Black;
+            border-style: solid;
+        }
+    </style>
   </head>
   <body>
-    <!-- I don't need a navbar tbh 
-        <nav class="navbar navbar-default">
-        <div class="container-fluid text-center">
-            <div class="row">
-                <div class="col-xs-12">
-                    <h3>NANANANANANANANNANANANANANANANANANA</h3>
-                </div>
-            </div>
-        </div>
-    </nav> -->
 
     <div class="jumbotron text-center">
         <h1>FAKE NEWS HERE!</h1>
         <p>Click the button below to get all the fake news you need :)</p>
+        <p>Click on articles to leave a note!</p>
         <p><a class="btn btn-primary btn-lg" href="#" role="button" id="scrape">Click Me!</a></p>
     </div>
     <div class="container-fluid">
         <div class="row">
-            <p><a class="btn btn-primary" href="#" role="button" id="addNote">Add a note!</a></p>
+    
             <div class="col-xs-6" id="stories">
                 <!-- insert stories here -->
             </div>
-            <div class="col-xs-6" id="notes">
-                <!-- insert notes here -->
+            <div class="col-xs-6" id="allnotes">
+                <div class="row">
+                    <div class="col-xs-12" id="notesform">
+                        <!-- notes form goes here -->
+                    </div>
+                </div>
+                <div class="col-xs-12" id="notes">
+                    <!-- insert notes here -->
+                </div>
+                
             </div>
         </div>
     </div>
-    <!-- <div class="media">
-        <div class="media-left">
-          <a href="#">
-            <img class="media-object" src="..." alt="...">
-          </a>
-        </div>
-        <div class="media-body">
-          <h4 class="media-heading">Media heading</h4>
-          ...
-        </div>
-    </div> -->
+    
 
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="app.js"></script>
