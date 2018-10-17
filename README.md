@@ -4,3 +4,4 @@ Routing handled by expressjs.
 
 This site is a dump for your favorite fake news. Feel free to leave a note!
 
+https://dashboard.heroku.com/apps/fakenewsscraper
